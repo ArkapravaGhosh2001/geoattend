@@ -8,24 +8,23 @@ datasource db {
 }
 
 model Employee {
-  id         String   @id @default(cuid()) @db.Uuid
+  id         String   @id @default(cuid())
   firstName  String
   lastName   String
   email      String   @unique
-  position   String
-  department String
-  hireDate   DateTime
+  position   String?
+  department String?
+  hireDate   DateTime?
   isActive   Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   companyId  String   @db.Uuid
-  company    Company  @relation(fields: [companyId], references: [id])
 
   @@map("employees")
 }
 
 model Company {
-  id          String     @id @default(cuid()) @db.Uuid
+  id          String   @id @default(cuid())
   name        String
   industry    String
   foundedYear Int
@@ -33,9 +32,8 @@ model Company {
   city        String
   longitude   Float
   latitude    Float
-  employees   Employee[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("companies")
 }

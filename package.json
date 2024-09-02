@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "pretty": "prettier . --write",
     "start": "node ./dist/index.js",
-    "test": "jest --coverage"
+    "prisma": "npx prisma migrate dev --name init"
   },
   "dependencies": {
     "@prisma/client": "5.19.1",

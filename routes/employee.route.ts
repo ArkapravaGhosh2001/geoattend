@@ -27,7 +27,7 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-router.get("/:id", async (req: Request, res: Response) => {
+router.get("employee/:id", async (req: Request, res: Response) => {
   try {
     const employee = await employeeController.getEmployeeById(req.params.id);
     if (employee) {

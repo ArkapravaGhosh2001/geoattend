@@ -29,7 +29,7 @@ router.get("/companies/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.put("/companies/:id", validateRequest(companySchema), async (req: Request, res: Response) => {
+router.put("/companies/:id", async (req: Request, res: Response) => {
   try {
     const company = await companyController.updateCompany(
       req.params.id,

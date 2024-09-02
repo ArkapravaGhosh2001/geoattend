@@ -14,15 +14,19 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "http://localhost:8000",
       },
     ],
   },
-  apis: ["./routes/*.js"],
+  apis: [".dist/routes/*.js"],
+};
+
+var options = {
+  explorer: true
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+router.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec, options));
 
 export default router;

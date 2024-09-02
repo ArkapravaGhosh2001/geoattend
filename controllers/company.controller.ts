@@ -12,7 +12,7 @@ export const companyController = {
   getCompanyById: async (id: string) => {
     return prisma.company.findUnique({
       where: { id },
-      include: { employees: true },
+    //   include: { employees: true },
     });
   },
 
@@ -40,7 +40,7 @@ export const companyController = {
   getEmployeeById: async (id: string) => {
     return prisma.employee.findUnique({
       where: { id },
-      include: { company: true },
+    //   include: { company: true },
     });
   },
 
