@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id         String   @id @default(cuid()) @db.Uuid
+  firstName  String
+  lastName   String
+  email      String   @unique
+  position   String
+  department String
+  hireDate   DateTime
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  companyId  String   @db.Uuid
+  company    Company  @relation(fields: [companyId], references: [id])
+
+  @@map("employees")
+}
+
+model Company {
+  id          String     @id @default(cuid()) @db.Uuid
+  name        String
+  industry    String
+  foundedYear Int
+  address     String
+  city        String
+  longitude   Float
+  latitude    Float
+  employees   Employee[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("companies")
+}
