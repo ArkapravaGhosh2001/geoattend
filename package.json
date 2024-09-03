@@ -2,7 +2,7 @@
   "name": "geo-attend",
   "version": "1.0.0",
   "main": "index.ts",
-  "author": "Arup Basak",
+  "author": "Arkaprava Ghosh",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
