@@ -19,6 +19,7 @@ model Employee {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   companyId  String   @db.Uuid
+  attendances Attendance[]
 
   @@map("employees")
 }
@@ -36,4 +37,19 @@ model Company {
   updatedAt   DateTime @updatedAt
 
   @@map("companies")
+}
+model Attendance {
+  id          String   @id @default(cuid())
+  employeeId  String
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  date        DateTime
+  checkIn     DateTime
+  checkOut    DateTime?
+  status      String   // e.g., "Present", "Absent", "Late", "Half-day"
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("attendances")
+  @@index([employeeId, date])
 }
